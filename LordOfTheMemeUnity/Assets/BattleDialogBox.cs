@@ -1,0 +1,43 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class BattleDialogBoxes : MonoBehaviour
+{
+    [SerializeField] int letterPerSecond;
+    [SerializeField] Color highLightedColor;
+
+    [SerializeField] Text dialogText;
+
+    [SerializeField] GameObject actionSelector;
+    [SerializeField] GameObject moveSelector;
+    [SerializeField] GameObject moveDetails;
+
+    [SerializeField] List<Text> actionTexts;
+    [SerializeField] List<Text> moveTexts;
+
+    [SerializeField] Text ppText;
+    [SerializeField] Text typeText;
+
+    public void SetDialog(string dialog)
+    {
+        dialogText.text = dialog;
+    }
+
+    public IEnumerator TypeDialog(string dialog) 
+    {
+        dialogText.text += "";
+        foreach (var letter in dialog.ToCharArray())
+        {
+            dialogText.text += letter;
+            yield return new WaitForSeconds(1f/letterPerSecond);
+        }
+        yield return new WaitForSeconds(1f);
+    }
+
+    public void EnableDialogText(bool enabled)
+    {
+        //dialogText enabled = enabled;
+    }
+}

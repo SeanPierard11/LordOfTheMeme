@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     public float MoveSpeed;
     public LayerMask SolidObjectLayer;
+    public LayerMask InteractableLayer;
     public LayerMask LongGrassLayer;
 
     private bool IsMoving;
@@ -47,6 +48,21 @@ public class PlayerController : MonoBehaviour
             }
         }
         animator.SetBool("IsMoving", IsMoving);
+
+        if (Input.GetKeyDown(KeyCode.X))
+            Interact();
+    }
+
+    void Interact() 
+    {
+        var facingDir = new Vector3(animator.GetFloat("moveX"), animator.GetFloat("moveY"));
+        var interactPos = transform.position + facingDir;
+
+        var collider = Physics2D.OverlapCircle(interactPos, 0.3f, InteractableLayer);
+        if (collider != null) 
+        {
+            collider.GetComponent<Interactable>()?.Interact();
+        }
     }
 
     IEnumerator Move(Vector3 targetpos)
@@ -66,7 +82,7 @@ public class PlayerController : MonoBehaviour
 
     private bool IsWalkable(Vector3 targetpos)
     {
-        if(Physics2D.OverlapCircle(targetpos, 0.3f, SolidObjectLayer) != null)
+        if(Physics2D.OverlapCircle(targetpos, 0.3f, SolidObjectLayer | InteractableLayer ) != null)
         {
             return false;
         }
