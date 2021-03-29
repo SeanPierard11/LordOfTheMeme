@@ -6,6 +6,7 @@ public class Cam_Mouv : MonoBehaviour
 {
     public float MoveSpeed;
     public LayerMask SolidObjectLayer;
+    public LayerMask InteractableLayer;
     private bool IsMoving;
     private Vector2 input;
 
@@ -56,7 +57,7 @@ public class Cam_Mouv : MonoBehaviour
 
     private bool IsWalkable(Vector3 targetpos)
     {
-        if (Physics2D.OverlapCircle(targetpos, 0.3f, SolidObjectLayer) != null)
+        if (Physics2D.OverlapCircle(targetpos, 0.2f, SolidObjectLayer | InteractableLayer) != null)
         {
             return false;
         }

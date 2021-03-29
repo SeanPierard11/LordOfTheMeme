@@ -72,6 +72,8 @@
     <Compile Include="Assets\script\Cam_mouv\Cam_Mouv.cs" />
     <Compile Include="Assets\script\Memes\Meme.cs" />
     <Compile Include="Assets\script\Memes\MemeBase.cs" />
+    <Compile Include="Assets\script\Memes\Move.cs" />
+    <Compile Include="Assets\script\Memes\MoveBase.cs" />
     <Compile Include="Assets\script\Player\PlayerController.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.18f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
